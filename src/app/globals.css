@@ -49,38 +49,38 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --background: oklch(0.985 0.018 350);
+  --foreground: oklch(0.24 0.055 332);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.24 0.055 332);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.24 0.055 332);
+  --primary: oklch(0.7 0.18 350);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.94 0.04 348);
+  --secondary-foreground: oklch(0.34 0.09 335);
+  --muted: oklch(0.955 0.025 342);
+  --muted-foreground: oklch(0.48 0.055 318);
+  --accent: oklch(0.93 0.06 18);
+  --accent-foreground: oklch(0.34 0.09 335);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  --border: oklch(0.9 0.025 342);
+  --input: oklch(0.9 0.025 342);
+  --ring: oklch(0.75 0.13 350);
+  --chart-1: oklch(0.74 0.16 350);
+  --chart-2: oklch(0.72 0.12 205);
+  --chart-3: oklch(0.78 0.14 83);
+  --chart-4: oklch(0.67 0.13 285);
+  --chart-5: oklch(0.72 0.13 25);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: oklch(0.99 0.012 350);
+  --sidebar-foreground: oklch(0.24 0.055 332);
+  --sidebar-primary: oklch(0.7 0.18 350);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.94 0.04 348);
+  --sidebar-accent-foreground: oklch(0.34 0.09 335);
+  --sidebar-border: oklch(0.9 0.025 342);
+  --sidebar-ring: oklch(0.75 0.13 350);
 }
 
 .dark {
@@ -123,6 +123,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
   }
   html {
     @apply font-sans;

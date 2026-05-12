@@ -25,8 +25,11 @@ export default function Home() {
     <AppShell>
       <div className="space-y-6">
         <section>
-          <h1 className="text-2xl font-semibold tracking-normal">Collection overview</h1>
-          <p className="mt-1 text-slate-600">
+          <div className="inline-flex rounded-full border border-pink-200 bg-white/70 px-3 py-1 text-sm font-medium text-pink-700 shadow-sm shadow-pink-100">
+            Pastel shelf control
+          </div>
+          <h1 className="mt-3 text-2xl font-semibold tracking-normal text-slate-950">Collection overview</h1>
+          <p className="mt-1 max-w-2xl text-slate-600">
             Track books, volumes, locations, duplicates, and borrowed items from one workspace.
           </p>
         </section>
@@ -36,10 +39,10 @@ export default function Home() {
             const Icon = metric.icon;
 
             return (
-              <Card key={metric.label} className="rounded-lg">
+              <Card key={metric.label} className="rounded-lg border-pink-100 bg-white/90 shadow-sm shadow-pink-100/70">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium text-slate-600">{metric.label}</CardTitle>
-                  <Icon className="size-4 text-emerald-700" />
+                  <Icon className="size-4 text-pink-500" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-semibold">{metric.value}</div>
@@ -49,12 +52,12 @@ export default function Home() {
           })}
         </section>
 
-        <section className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
-          <div className="space-y-3">
+        <section className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+          <div className="min-w-0 space-y-3">
             <h2 className="text-lg font-semibold">Book catalog</h2>
             <BookSeriesTable />
           </div>
-          <div className="space-y-3">
+          <div className="min-w-0 space-y-3">
             <h2 className="text-lg font-semibold">Recent collection</h2>
             <CollectionTable />
           </div>

@@ -12,10 +12,11 @@ import { getMissingVolumes, getOwnedVolumes } from "@/utils/collection";
 
 export function BookSeriesTable() {
   return (
-    <div className="overflow-hidden rounded-lg border bg-white">
-      <Table>
+    <div className="w-full min-w-0 overflow-hidden rounded-lg border border-pink-100 bg-white/90 shadow-sm shadow-pink-100/70 backdrop-blur">
+      <div className="w-full overflow-x-auto">
+      <Table className="min-w-[680px]">
         <TableHeader>
-          <TableRow>
+          <TableRow className="bg-pink-50/80 hover:bg-pink-50/80">
             <TableHead>Series</TableHead>
             <TableHead>Category</TableHead>
             <TableHead>Owned</TableHead>
@@ -30,28 +31,29 @@ export function BookSeriesTable() {
 
             return (
               <TableRow key={series.id}>
-                <TableCell>
+                <TableCell className="max-w-52">
                   <div className="font-medium">{series.titleTh}</div>
-                  <div className="text-sm text-slate-500">{series.titleJp ?? series.titleEn}</div>
+                  <div className="truncate text-sm text-pink-900/55">{series.titleJp ?? series.titleEn}</div>
                 </TableCell>
                 <TableCell>
-                  <Badge variant="outline" className="capitalize">
+                  <Badge variant="outline" className="border-pink-200 bg-white text-pink-700 capitalize">
                     {series.category}
                   </Badge>
                 </TableCell>
                 <TableCell>
                   {ownedVolumes.length}/{series.latestVolumeTh}
                 </TableCell>
-                <TableCell className="max-w-72 text-sm text-slate-600">
+                <TableCell className="max-w-52 truncate text-sm text-slate-600">
                   {missingVolumes.length > 0 ? missingVolumes.slice(0, 8).join(", ") : "Complete"}
                   {missingVolumes.length > 8 ? " ..." : ""}
                 </TableCell>
-                <TableCell>{series.thaiPublisher ?? "-"}</TableCell>
+                <TableCell className="max-w-40 truncate">{series.thaiPublisher ?? "-"}</TableCell>
               </TableRow>
             );
           })}
         </TableBody>
       </Table>
+      </div>
     </div>
   );
 }
