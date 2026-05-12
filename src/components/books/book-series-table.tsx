@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { bookSeries, myBooks } from "@/services/mock-data";
+import { bookSeries, myBooks } from "@/services/library-data";
 import { getMissingVolumes, getOwnedVolumes } from "@/utils/collection";
 
 export function BookSeriesTable() {

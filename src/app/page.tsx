@@ -4,7 +4,7 @@ import { BookSeriesTable } from "@/components/books/book-series-table";
 import { CollectionTable } from "@/components/books/collection-table";
 import { AppShell } from "@/components/layout/app-shell";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { bookSeries, borrowRecords, myBooks } from "@/services/mock-data";
+import { bookSeries, borrowRecords, myBooks } from "@/services/library-data";
 import { getDuplicateBooks, getMissingVolumes, getOwnedVolumes } from "@/utils/collection";
 
 const totalMissing = bookSeries.reduce((sum, series) => {

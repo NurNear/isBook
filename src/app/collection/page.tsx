@@ -3,7 +3,7 @@ import { AlertTriangle, CopyCheck } from "lucide-react";
 import { CollectionTable } from "@/components/books/collection-table";
 import { AppShell } from "@/components/layout/app-shell";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { bookSeries, myBooks } from "@/services/mock-data";
+import { bookSeries, myBooks } from "@/services/library-data";
 import { getDuplicateBooks, getMissingVolumes, getOwnedVolumes } from "@/utils/collection";
 
 export default function CollectionPage() {

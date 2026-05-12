@@ -4,7 +4,7 @@ import { AppShell } from "@/components/layout/app-shell";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { myBooks } from "@/services/mock-data";
+import { myBooks } from "@/services/library-data";
 
 const storageTree = [
   {

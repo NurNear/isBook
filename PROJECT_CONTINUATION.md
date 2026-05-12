@@ -23,8 +23,8 @@ The initial project has been scaffolded and pushed to GitHub:
 - Language: TypeScript
 - Styling: Tailwind CSS
 - UI: shadcn/ui
-- Current data source: local mock data
-- Database target: Supabase Postgres
+- Current data source: local JSON seed data
+- Database target: none
 - Hosting target: Vercel Hobby
 
 ## What Has Been Built
@@ -45,8 +45,6 @@ Core setup:
   - `tabs`
   - `label`
 - Dependencies installed:
-  - `@supabase/supabase-js`
-  - `@supabase/ssr`
   - `@tanstack/react-query`
   - `react-hook-form`
   - `zod`
@@ -68,13 +66,11 @@ Pages currently available:
 
 Important files:
 
-- `.env.example` - expected environment variables
-- `supabase/schema.sql` - initial Supabase schema
+- `.env.example` - optional API environment variables
+- `src/data/library.json` - local JSON seed data
 - `src/types/book.ts` - core domain types
-- `src/services/mock-data.ts` - temporary mock data
+- `src/services/library-data.ts` - JSON data adapter
 - `src/utils/collection.ts` - missing volume and duplicate helpers
-- `src/lib/supabase/client.ts` - browser Supabase client helper
-- `src/lib/supabase/server.ts` - server Supabase client helper
 - `src/components/layout/app-shell.tsx` - main application shell
 - `src/components/books/*` - initial table and quick-add components
 
@@ -108,49 +104,39 @@ The last verified build passed successfully.
 
 ## Environment Variables
 
-Copy `.env.example` to `.env.local` for local development when real API/database integration starts.
+Copy `.env.example` to `.env.local` only when external book API integration starts.
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_ROLE_KEY=
 GOOGLE_BOOKS_API_KEY=
 RAKUTEN_APP_ID=
 ```
 
-Current app pages can build without these values because they use mock data.
+Current app pages can build without these values because they use local JSON data.
 
-## Database
+## Local JSON Storage
 
-The initial schema lives at:
+The seed data lives at:
 
 ```text
-supabase/schema.sql
+src/data/library.json
 ```
 
-Tables included:
+The JSON currently includes:
 
-- `book_series`
-- `book_volumes`
-- `locations`
-- `storages`
-- `shelves`
-- `borrowers`
-- `my_books`
+- `bookSeries`
+- `myBooks`
+- `borrowRecords`
 
-Before connecting real data:
+Important limitation:
 
-1. Create a Supabase project.
-2. Open Supabase SQL Editor.
-3. Run `supabase/schema.sql`.
-4. Add Supabase env values to `.env.local` and Vercel Environment Variables.
+Vercel cannot persistently write changes back to `src/data/library.json` at runtime. For a no-database app, runtime edits should be stored in the user's browser with `localStorage` or `IndexedDB`, then exported/imported as JSON backups.
 
 ## Deployment Plan
 
 Recommended free hosting:
 
 - App hosting: Vercel Hobby
-- Database/auth/storage: Supabase Free
+- Data storage: local browser JSON storage
 
 Deploy steps:
 
@@ -162,7 +148,7 @@ Deploy steps:
    - Build command: `npm run build`
 5. Deploy.
 
-The first public deployment can work with mock data. Supabase env values can be added later.
+The first public deployment works with local JSON seed data and does not need database environment variables.
 
 ## Git Notes
 
@@ -196,15 +182,17 @@ git push
 - Real `.env*` files should stay ignored.
 - `node_modules`, `.next`, build output, and dev server logs are ignored.
 - The current UI is functional scaffolding, not final UX.
-- Mock data should be replaced by Supabase queries in the next implementation phase.
+- `src/data/library.json` is the source seed file.
+- Runtime edits on the public website should use `localStorage` or `IndexedDB`.
+- Add JSON import/export before relying on browser storage for important personal data.
 
 ## Suggested Next Steps
 
 Phase 1 continuation:
 
-1. Create Supabase project and run `supabase/schema.sql`.
-2. Add typed database mapping for Supabase rows.
-3. Replace `src/services/mock-data.ts` usage with real data services.
+1. Add a client-side library store using `localStorage`.
+2. Seed the first browser session from `src/data/library.json`.
+3. Add JSON export/import backup actions.
 4. Implement Book CRUD:
    - create series
    - edit series
@@ -216,10 +204,7 @@ Phase 1 continuation:
    - update quantity
    - assign shelf
    - update status
-6. Add Supabase Auth:
-   - login page
-   - session middleware
-   - protected app routes
+6. Add a reset-to-seed-data action.
 
 Phase 2:
 
@@ -247,12 +232,12 @@ Phase 4:
 
 ## Recommended Next Coding Task
 
-Start with real Supabase integration for the catalog:
+Start with a browser JSON store:
 
-1. Define database row types in `src/types/database.ts`.
-2. Add `src/services/books.ts`.
-3. Query `book_series` and `book_volumes` from Supabase.
-4. Update `/books` to render real rows.
-5. Keep mock data as fallback only if Supabase env values are missing.
+1. Add `src/types/library.ts` for the full JSON document shape.
+2. Add `src/hooks/use-library-store.ts`.
+3. Load from `localStorage`, fallback to `src/data/library.json`.
+4. Update `/books` and `/collection` to mutate the local store.
+5. Add export/import JSON buttons in `/settings`.
 
-This keeps the next step small and proves that deployment, env vars, and database access work end to end.
+This keeps the app free, simple, and deployable on static-friendly hosting while still allowing real personal data entry in one browser.

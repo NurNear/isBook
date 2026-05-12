@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { borrowRecords } from "@/services/mock-data";
+import { borrowRecords } from "@/services/library-data";
 
 export default function BorrowPage() {
   return (

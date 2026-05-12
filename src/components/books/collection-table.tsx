@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { myBooks } from "@/services/mock-data";
+import { myBooks } from "@/services/library-data";
 
 const statusVariant = {
   AVAILABLE: "default",
